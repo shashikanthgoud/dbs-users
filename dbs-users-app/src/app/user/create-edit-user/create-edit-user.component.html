@@ -1,0 +1,56 @@
+<main class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{formType}} User</div>
+                <div class="card-body">
+                    <form #userForm="ngForm">
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                            <div class="col-md-6">
+                                <input type="text" id="name" class="form-control" name="name" placeholder="Enter name"
+                                [ngClass]="{'feild-error': name.invalid && (name.dirty || name.touched)}" [(ngModel)]="user.name" #name="ngModel" required>
+                                <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                                    <span class="feild-error-text" *ngIf="name.errors?.required">*name is required.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email_address" class="col-md-4 col-form-label text-md-right">E-mail</label>
+                            <div class="col-md-6">
+                                <input type="email" id="email_address" class="form-control" name="email-address" placeholder="Enter email"
+                                [ngClass]="{'feild-error': email.invalid && (email.dirty || email.touched)}" #email="ngModel" [(ngModel)]="user.email" required>
+                                <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                                    <span class="feild-error-text" *ngIf="email.errors?.required">*email is required.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="phone_number" class="col-md-4 col-form-label text-md-right">Phone</label>
+                            <div class="col-md-6">
+                                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone_number" class="form-control" name="phone" placeholder="123-456-7891"
+                                [ngClass]="{'feild-error': phone.invalid && (phone.dirty || phone.touched)}" #phone="ngModel" [(ngModel)]="user.phone" required>
+                                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                                    <span class="feild-error-text" *ngIf="phone.errors?.required">*phone is required.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="website" class="col-md-4 col-form-label text-md-right">Website</label>
+                            <div class="col-md-6">
+                                <input type="url" id="website" class="form-control" name="website" [(ngModel)]="user.website">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 offset-md-4">
+                            <button (click)="saveUser()" [disabled]="userForm.form.invalid" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
